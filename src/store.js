@@ -1,32 +1,62 @@
-export const initialStore=()=>{
-  return{
+export const initialStore = () => {
+  return {
     message: null,
-    todos: [
-      {
-        id: 1,
-        title: "Make the bed",
-        background: null,
-      },
-      {
-        id: 2,
-        title: "Do my homework",
-        background: null,
-      }
-    ]
+    favorites: [],
+    personajes: [],
+    personaje: null,
+    planetas: [],
+    planeta: null,
+    vehiculos: [],
+    vehuiculo: null
   }
 }
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
-    case 'add_task':
+  switch (action.type) {
 
-      const { id,  color } = action.payload
-
+    case 'actualizar_favoritos': 
       return {
         ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        favorites: action.payload
       };
+
+    case 'guardar_personajes': 
+      return {
+        ...store,
+        personajes: action.payload
+      };
+
+    case 'guardar_personaje': 
+      return {
+        ...store,
+        personaje: action.payload
+      };
+
+    case 'guardar_planetas': 
+      return {
+        ...store,
+        planetas: action.payload
+      };
+
+    case 'guardar_planeta': 
+      return {
+        ...store,
+        planeta: action.payload
+      };
+
+    case 'guardar_vehiculos': 
+      return {
+        ...store,
+        vehiculos: action.payload
+      };
+
+    case 'guardar_vehiculo': 
+      return {
+        ...store,
+        vehiculo: action.payload
+      };
+
     default:
-      throw Error('Unknown action.');
-  }    
+      return store; // 
+  }
 }
